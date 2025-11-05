@@ -1,5 +1,14 @@
 import random
-Puntos_GENERALA = [["[UNO]",0],["[DOS]",0],["[TRES]",0],["[CUATRO]",0],["[CINCO]",0],["[SEIS]",0],["[ESCALERA (20)]",0],["[FULL (30)]",0],["[POKER (40)]",0],["[GENERALA (50)]",0]]
+Puntos_GENERALA = [["[UNO]",0],
+                   ["[DOS]",0],
+                   ["[TRES]",0],
+                   ["[CUATRO]",0],
+                   ["[CINCO]",0],
+                   ["[SEIS]",0],
+                   ["[ESCALERA (20)]",0],
+                   ["[FULL (30)]",0],
+                   ["[POKER (40)]",0],
+                   ["[GENERALA (50)]",0]]
 def puntuaciones ():
     print("═════════════════════════\n\tPLANTILLA DE PUNTAJES\n═════════════════════════\n")
     Puntos_totales = 0
