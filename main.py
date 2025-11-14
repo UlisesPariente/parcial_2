@@ -1,4 +1,5 @@
 import funciones
+from datos.datos import DATOS
 
 while True:
     print  (f"═════════════════════════\n\tMINI GENERALA\n═════════════════════════\n[1] Jugar\n[2] Estadisticas\n[3] Creditos\n[4] Salir\n× Seleccione una opcion:\n ")
@@ -6,9 +7,9 @@ while True:
     
     match opcion:
         case 1:
-            for i in range (len(funciones.Puntos_GENERALA)):
-                funciones.Puntos_GENERALA[i]["valor"]=0
-                funciones.Puntos_GENERALA[i]["bandera_uso"]=True
+            for i in range (len(DATOS ["puntos"])):
+                DATOS ["puntos"][i]["valor"]=0
+                DATOS ["puntos"][i]["bandera_uso"]=True
                 
         
             for i in range(10):
