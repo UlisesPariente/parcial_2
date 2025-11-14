@@ -1,11 +1,29 @@
 {
     "nombres": [
-        "MERCURIO",
-        "VENUS",
-        "TIERRA",
-        "MARTE",
-        "JUPITER",
-        "SATURNO"
+        [
+            "MERCURIO",
+            1
+        ],
+        [
+            "VENUS",
+            2
+        ],
+        [
+            "TIERRA",
+            3
+        ],
+        [
+            "MARTE",
+            4
+        ],
+        [
+            "JUPITER",
+            5
+        ],
+        [
+            "SATURNO",
+            6
+        ]
     ],
     "puntos": [
         {
