@@ -192,26 +192,28 @@ def mostrar_puntuaciones ():
     print("════════════════════════════════════\n")
 
     Puntos_totales = 0
-
-    for i, item in enumerate(DATOS ["puntos"], start=1):
-        print(f"[{i}] \t{item['jugada']}\t:\t{item['valor']}")
+    ancho = max(len(item['jugada']) for item in DATOS["puntos"])
+    
+    for i, item in enumerate(DATOS["puntos"], start=1):
+        print(f"[{i:2}] {item['jugada']:<{ancho}}  :  {item['valor']:>3}")
         Puntos_totales += item["valor"]
 
     print("\n════════════════════════════════════")
     print(f"PUNTAJE TOTAL:\t{Puntos_totales}")
     print("════════════════════════════════════\n")
 
-
-
-Nombre_de_dados = ["A","B","C","D","E"]
-
+def nombre_dados (datos, dados):
+    for i in range(6):
+        if datos["nombres"][i][1] == dados:
+            return datos["nombres"][i][0]
+        
 def tirada_de_dados (dados):
         for j in range (5):
             if dados[j][1] == False:
                 numero_del_dado = random.randint (1,6)
                 dados[j][0] = numero_del_dado
                 
-            print (f"[{[j + 1]}.{dados[j][0]} -> {Nombre_de_dados[j]}]")
+            print (f"[{[j + 1]}.{dados[j][0]} -> {nombre_dados(DATOS,numero_del_dado)}]")
 
         return (dados)
                     
