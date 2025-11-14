@@ -25,7 +25,12 @@ while ejecutando:
         pantalla_principal (pantalla)
         
     elif pantalla_actual == "juego":
+        
+        
         pass
+    
+    
+    
     elif pantalla_actual == "opciones":
         botones = pantalla_opciones(pantalla)
     elif pantalla_actual == "estadisticas":
