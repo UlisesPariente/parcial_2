@@ -1,0 +1,62 @@
+{
+    "nombres": [
+        "MERCURIO",
+        "VENUS",
+        "TIERRA",
+        "MARTE",
+        "JUPITER",
+        "SATURNO"
+    ],
+    "puntos": [
+        {
+            "jugada": "[UNO]",
+            "valor": 0,
+            "bandera_uso": true
+        },
+        {
+            "jugada": "[DOS]",
+            "valor": 0,
+            "bandera_uso": true
+        },
+        {
+            "jugada": "[tRES]",
+            "valor": 0,
+            "bandera_uso": true
+        },
+        {
+            "jugada": "[CUATRO]",
+            "valor": 0,
+            "bandera_uso": true
+        },
+        {
+            "jugada": "[CINCO]",
+            "valor": 0,
+            "bandera_uso": true
+        },
+        {
+            "jugada": "[SEIS]",
+            "valor": 0,
+            "bandera_uso": true
+        },
+        {
+            "jugada": "[ESCALERA (20)]",
+            "valor": 0,
+            "bandera_uso": true
+        },
+        {
+            "jugada": "[FULL (30)]",
+            "valor": 0,
+            "bandera_uso": true
+        },
+        {
+            "jugada": "[POKER (40)]",
+            "valor": 0,
+            "bandera_uso": true
+        },
+        {
+            "jugada": "[GENERALA (50)]",
+            "valor": 0,
+            "bandera_uso": true
+        }
+    ]
+}
