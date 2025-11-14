@@ -1,4 +1,5 @@
-import funciones
+from dados import * 
+from puntaje import *
 from datos.datos import DATOS
 
 while True:
@@ -15,17 +16,17 @@ while True:
             for i in range(10):
                 dados = [[0,False],[0,False],[0,False],[0,False],[0,False]]
             
-                funciones.mostrar_puntuaciones()
-                dados = funciones.tirada_de_dados(dados)
-                dados_mantener = funciones.dados_manetener(dados)
-                dados_elegidos = funciones.lista_de_dados_elegidos(dados_mantener)
+                puntaje.mostrar_puntuaciones()
+                dados = dados.tirada_de_dados(dados)
+                dados_mantener = dados.dados_manetener(dados)
+                dados_elegidos = dados.lista_de_dados_elegidos(dados_mantener)
                 
-                (puntaje,opcion) = funciones.seleccion_puntaje(dados_elegidos)
-                funciones.modificacion_generala(puntaje, opcion)
+                (puntaje,opcion) = puntaje.seleccion_puntaje(dados_elegidos)
+                puntaje.modificacion_generala(puntaje, opcion)
 
-            puntuacion = funciones.suma_puntos()
+            puntuacion = puntaje.suma_puntos()
             nombre = input("ingrese su nombre: ")
-            funciones.guardar_puntuacion(nombre, puntuacion)
+            puntaje.guardar_puntuacion(nombre, puntuacion)
             
                 
         case 2:
