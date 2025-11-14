@@ -1,25 +1,15 @@
 import random
 import os
-Puntos_GENERALA = [{"jugada":"[UNO]", "valor":0, "bandera_uso":True},
-                   {"jugada":"[DOS]","valor":0,"bandera_uso":True},
-                   {"jugada":"[tRES]","valor":0,"bandera_uso":True},
-                   {"jugada":"[CUATRO]","valor":0,"bandera_uso":True},
-                   {"jugada":"[CINCO]","valor":0,"bandera_uso":True},
-                   {"jugada":"[SEIS]","valor":0,"bandera_uso":True},
-                   {"jugada":"[ESCALERA (20)]","valor":0,"bandera_uso":True},
-                   {"jugada":"[FULL (30)]","valor":0,"bandera_uso":True},
-                   {"jugada":"[POKER (40)]","valor":0,"bandera_uso":True},
-                   {"jugada":"[GENERALA (50)]","valor":0,"bandera_uso":True}]
-
+from datos.datos import DATOS
 def modificacion_generala (puntaje:int, opcion):
     numero_opcion = int (opcion)
-    Puntos_GENERALA [numero_opcion-1]["valor"] = puntaje
+    DATOS ["puntos"] [numero_opcion-1]["valor"] = puntaje
 
 
 def suma_puntos ():
     puntaje_total = 0
-    for i in range(len(Puntos_GENERALA)):
-        puntaje_total +=  Puntos_GENERALA[i]["valor"]
+    for i in range(len(DATOS)):
+        puntaje_total +=  DATOS ["puntos"][i]["valor"]
     return puntaje_total
 
 def seleccion_puntaje (dados):
@@ -30,8 +20,8 @@ def seleccion_puntaje (dados):
             
         match opciones_de_seleccion:
             case "1":
-                if Puntos_GENERALA[0]["bandera_uso"] == True:
-                    Puntos_GENERALA [0]["bandera_uso"] = False 
+                if DATOS ["puntos"][0]["bandera_uso"] == True:
+                    DATOS ["puntos"] [0]["bandera_uso"] = False 
                     for i in range (5):
                         if 1 == dados[i]:
                             Puntaje += dados[i]
@@ -42,8 +32,8 @@ def seleccion_puntaje (dados):
                 
                 
             case "2":
-                if Puntos_GENERALA[1]["bandera_uso"] == True:
-                    Puntos_GENERALA [1]["bandera_uso"] = False 
+                if DATOS ["puntos"][1]["bandera_uso"] == True:
+                    DATOS ["puntos"] [1]["bandera_uso"] = False 
                     for i in range (5):
                         if 2 == dados[i]:
                             Puntaje += dados[i]
@@ -52,8 +42,8 @@ def seleccion_puntaje (dados):
                     print ("opcion invalida")
                     
             case "3":
-                if Puntos_GENERALA[2]["bandera_uso"] == True:
-                    Puntos_GENERALA [2]["bandera_uso"] = False 
+                if DATOS ["puntos"][2]["bandera_uso"] == True:
+                    DATOS ["puntos"] [2]["bandera_uso"] = False 
                     for i in range (5):
                         if 3 == dados[i]:
                             Puntaje += dados[i]
@@ -62,8 +52,8 @@ def seleccion_puntaje (dados):
                     print ("opcion invalida")
                     
             case "4":
-                if Puntos_GENERALA[3]["bandera_uso"] == True:
-                    Puntos_GENERALA [3]["bandera_uso"] = False 
+                if DATOS ["puntos"][3]["bandera_uso"] == True:
+                    DATOS ["puntos"] [3]["bandera_uso"] = False 
                     for i in range (5):
                         if 4 == dados[i]:
                             Puntaje += dados[i]
@@ -72,8 +62,8 @@ def seleccion_puntaje (dados):
                     print ("opcion invalida")
                     
             case "5":
-                if Puntos_GENERALA[4]["bandera_uso"] == True:
-                    Puntos_GENERALA [4]["bandera_uso"] = False 
+                if DATOS ["puntos"][4]["bandera_uso"] == True:
+                    DATOS ["puntos"] [4]["bandera_uso"] = False 
                     for i in range (5):
                         if 5 == dados[i]:
                             Puntaje += dados[i]
@@ -82,8 +72,8 @@ def seleccion_puntaje (dados):
                     print ("opcion invalida")
                    
             case "6":
-                if Puntos_GENERALA[5]["bandera_uso"] == True:
-                    Puntos_GENERALA [5]["bandera_uso"] = False 
+                if DATOS ["puntos"][5]["bandera_uso"] == True:
+                    DATOS ["puntos"] [5]["bandera_uso"] = False 
                     for i in range (5):
                         if 6 == dados[i]:
                             Puntaje += dados[i]
@@ -92,8 +82,8 @@ def seleccion_puntaje (dados):
                     print ("opcion invalida")
                     
             case "7":
-                if Puntos_GENERALA[6]["bandera_uso"] == True:
-                    Puntos_GENERALA[6]["bandera_uso"] = False
+                if DATOS ["puntos"][6]["bandera_uso"] == True:
+                    DATOS ["puntos"][6]["bandera_uso"] = False
                     Lista_Escalera_correcta_1 =[1,2,3,4,5]
                     Lista_Escalera_correcta_2 = [2,3,4,5,6]
                 
@@ -107,8 +97,8 @@ def seleccion_puntaje (dados):
                     print("Opcion invalida")
                     
             case "8":
-                if Puntos_GENERALA[7]["bandera_uso"] == True:
-                    Puntos_GENERALA[7]["bandera_uso"] = False
+                if DATOS ["puntos"][7]["bandera_uso"] == True:
+                    DATOS ["puntos"][7]["bandera_uso"] = False
                     contador_full = [0,0,0,0,0,0]
                     for i in range (5):
                         match dados[i]:
@@ -132,8 +122,8 @@ def seleccion_puntaje (dados):
                     print ("Opcion invalida")
                     
             case "9":
-                if Puntos_GENERALA[8]["bandera_uso"] == True:
-                    Puntos_GENERALA[8]["bandera_uso"] = False
+                if DATOS ["puntos"][8]["bandera_uso"] == True:
+                    DATOS ["puntos"][8]["bandera_uso"] = False
                     lista_contador =[0,0,0,0,0,0]
                     
                     for i in range (5):
@@ -162,8 +152,8 @@ def seleccion_puntaje (dados):
                     print ("Opcion invaldia")
                 
             case "10":
-                if Puntos_GENERALA[9]["bandera_uso"] == True:
-                    Puntos_GENERALA[9]["bandera_uso"] = False
+                if DATOS ["puntos"][9]["bandera_uso"] == True:
+                    DATOS ["puntos"][9]["bandera_uso"] = False
                     lista_contador =[0,0,0,0,0,0]
                     
                     for i in range (5):
@@ -197,12 +187,20 @@ def seleccion_puntaje (dados):
     return (Puntaje, opciones_de_seleccion)
         
 def mostrar_puntuaciones ():
-    print("═════════════════════════\n\tPLANTILLA DE PUNTAJES\n═════════════════════════\n")
+    print("════════════════════════════════════")
+    print("\tPLANTILLA DE PUNTAJES")
+    print("════════════════════════════════════\n")
+
     Puntos_totales = 0
-    for i in range (len(Puntos_GENERALA)):
-        print (f"[{i + 1}] {Puntos_GENERALA[i]["jugada"]}\t:{Puntos_GENERALA[i]["valor"]}")
-        Puntos_totales += Puntos_GENERALA[i]["valor"]
-    print(f"═════════════════════════\nPUNTAJE TOTAL: {Puntos_totales}\n═════════════════════════\n")
+
+    for i, item in enumerate(DATOS ["puntos"], start=1):
+        print(f"[{i}] \t{item['jugada']}\t:\t{item['valor']}")
+        Puntos_totales += item["valor"]
+
+    print("\n════════════════════════════════════")
+    print(f"PUNTAJE TOTAL:\t{Puntos_totales}")
+    print("════════════════════════════════════\n")
+
 
 
 Nombre_de_dados = ["A","B","C","D","E"]
