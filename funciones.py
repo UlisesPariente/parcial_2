@@ -1,7 +1,6 @@
 import random
 import os
-Puntos_GENERALA = [
-                    {"valor": 0,"bandera_uso": True},
+Puntos_GENERALA = [{"jugada":"[UNO]", "valor":0, "bandera_uso":True},
                    {"jugada":"[DOS]","valor":0,"bandera_uso":True},
                    {"jugada":"[tRES]","valor":0,"bandera_uso":True},
                    {"jugada":"[CUATRO]","valor":0,"bandera_uso":True},
@@ -10,8 +9,7 @@ Puntos_GENERALA = [
                    {"jugada":"[ESCALERA (20)]","valor":0,"bandera_uso":True},
                    {"jugada":"[FULL (30)]","valor":0,"bandera_uso":True},
                    {"jugada":"[POKER (40)]","valor":0,"bandera_uso":True},
-                   {"jugada":"[GENERALA (50)]","valor":0,"bandera_uso":True}
-                   ]
+                   {"jugada":"[GENERALA (50)]","valor":0,"bandera_uso":True}]
 
 def modificacion_generala (puntaje:int, opcion):
     numero_opcion = int (opcion)
@@ -27,7 +25,7 @@ def suma_puntos ():
 def seleccion_puntaje (dados):
 
     while True:
-        opciones_de_seleccion = input(f"Asigne el puntaje: ")
+        opciones_de_seleccion = input(f"Asigne categoria del puntaje: ")
         Puntaje = 0
             
         match opciones_de_seleccion:
@@ -35,19 +33,19 @@ def seleccion_puntaje (dados):
                 if Puntos_GENERALA[0]["bandera_uso"] == True:
                     Puntos_GENERALA [0]["bandera_uso"] = False 
                     for i in range (5):
-                        if 1 in dados[i]:
+                        if 1 == dados[i]:
                             Puntaje += dados[i]
                     break
                 else:
                     print ("opcion invalida")
                     
-                # 2,5,4,4,4
+                
                 
             case "2":
                 if Puntos_GENERALA[1]["bandera_uso"] == True:
                     Puntos_GENERALA [1]["bandera_uso"] = False 
                     for i in range (5):
-                        if 2 in dados[i]:
+                        if 2 == dados[i]:
                             Puntaje += dados[i]
                     break
                 else:
@@ -57,7 +55,7 @@ def seleccion_puntaje (dados):
                 if Puntos_GENERALA[2]["bandera_uso"] == True:
                     Puntos_GENERALA [2]["bandera_uso"] = False 
                     for i in range (5):
-                        if 3 in dados[i]:
+                        if 3 == dados[i]:
                             Puntaje += dados[i]
                     break
                 else:
@@ -67,7 +65,7 @@ def seleccion_puntaje (dados):
                 if Puntos_GENERALA[3]["bandera_uso"] == True:
                     Puntos_GENERALA [3]["bandera_uso"] = False 
                     for i in range (5):
-                        if 4 in dados[i]:
+                        if 4 == dados[i]:
                             Puntaje += dados[i]
                     break
                 else:
@@ -77,7 +75,7 @@ def seleccion_puntaje (dados):
                 if Puntos_GENERALA[4]["bandera_uso"] == True:
                     Puntos_GENERALA [4]["bandera_uso"] = False 
                     for i in range (5):
-                        if 5 in dados[i]:
+                        if 5 == dados[i]:
                             Puntaje += dados[i]
                     break
                 else:
@@ -87,7 +85,7 @@ def seleccion_puntaje (dados):
                 if Puntos_GENERALA[5]["bandera_uso"] == True:
                     Puntos_GENERALA [5]["bandera_uso"] = False 
                     for i in range (5):
-                        if 6 in dados[i]:
+                        if 6 == dados[i]:
                             Puntaje += dados[i]
                     break
                 else:
@@ -101,11 +99,13 @@ def seleccion_puntaje (dados):
                 
                     Dados_auxiliar = dados
                     Dados_auxiliar.sort()
+                    
                     if Dados_auxiliar == Lista_Escalera_correcta_1 or Dados_auxiliar == Lista_Escalera_correcta_2:
                         Puntaje = 20
-                        break
+                    break
                 else:
                     print("Opcion invalida")
+                    
             case "8":
                 if Puntos_GENERALA[7]["bandera_uso"] == True:
                     Puntos_GENERALA[7]["bandera_uso"] = False
@@ -127,12 +127,13 @@ def seleccion_puntaje (dados):
                                         
                     if 3 in contador_full and 2 in contador_full:
                         Puntaje = 30
-                        break
+                    break
                 else:
                     print ("Opcion invalida")
+                    
             case "9":
                 if Puntos_GENERALA[8]["bandera_uso"] == True:
-                    Puntos_GENERALA[8]["badnera_uso"] = False
+                    Puntos_GENERALA[8]["bandera_uso"] = False
                     lista_contador =[0,0,0,0,0,0]
                     
                     for i in range (5):
@@ -156,7 +157,7 @@ def seleccion_puntaje (dados):
                                 
                     if 4 in lista_contador:
                         Puntaje = 40
-                        break
+                    break
                 else:
                     print ("Opcion invaldia")
                 
@@ -186,75 +187,69 @@ def seleccion_puntaje (dados):
                                 
                     if 5 in lista_contador:
                         Puntaje = 50
-                        break
+                    break
                 else:
-                    print ("Opcion invalida")        
+                    print ("Opcion invalida")
+                            
             case _:
                 print(f"Opcion invalida...")
-
-        return Puntaje, opciones_de_seleccion
+        
+    return (Puntaje, opciones_de_seleccion)
         
 def mostrar_puntuaciones ():
     print("═════════════════════════\n\tPLANTILLA DE PUNTAJES\n═════════════════════════\n")
     Puntos_totales = 0
     for i in range (len(Puntos_GENERALA)):
-        print (f"[{i + 1}] {Puntos_GENERALA[i]["Jugada"]}\t:{Puntos_GENERALA[i]["valor"]}")
-        Puntos_totales += Puntos_GENERALA[i][1]
+        print (f"[{i + 1}] {Puntos_GENERALA[i]["jugada"]}\t:{Puntos_GENERALA[i]["valor"]}")
+        Puntos_totales += Puntos_GENERALA[i]["valor"]
     print(f"═════════════════════════\nPUNTAJE TOTAL: {Puntos_totales}\n═════════════════════════\n")
 
 
 Nombre_de_dados = ["A","B","C","D","E"]
 
-def tirada_de_dados ():
-   dados = []
-    
-   for g in range (4): 
-        print(f"------ tirada numero {g + 1} ------")
-        if g == 0:
-            for l in range (5): 
+def tirada_de_dados (dados):
+        for j in range (5):
+            if dados[j][1] == False:
                 numero_del_dado = random.randint (1,6)
-                dados.append ([numero_del_dado,False]) 
-                print (f"[{[l + 1]}.{dados[l][0]} -> {Nombre_de_dados[l]}]")
+                dados[j][0] = numero_del_dado
+                
+            print (f"[{[j + 1]}.{dados[j][0]} -> {Nombre_de_dados[j]}]")
+
+        return (dados)
+                    
+def dados_manetener (dados):
+    
+    for i in range (2):
+        opcion = str(input("Desea hacer otra tirada? s/n\n")).lower()
+        if opcion == "s":
+            for k in range(5):
+                 
+                while True:
+                    dado_que_desea_mantener = (input("Indique la posicion del dado desea mantener(de querer salir utilizar'10'): "))
+                    if not dado_que_desea_mantener.isdigit():
+                        print("debe de poner solo numeros, intente de nuevo")
+                    else:
+                        break    
+                
+                if dado_que_desea_mantener == "10":
+                    break
+                dado_que_desea_mantener = int(dado_que_desea_mantener)
+                                    
+                for i in range (len(dados)):
+                    if (dado_que_desea_mantener - 1) == i:
+                        dados[i][1] = True
+                
+            tirada_de_dados(dados)
+                        
+        elif  opcion ==  "n":
+            print (f"Fin de la tirada...")
+            return dados                     
         else:
-            for j in range (5):
-                if dados[j][1] == False:
-                    numero_del_dado = random.randint (1,6)
-                    dados[j][0] = numero_del_dado
-                print (f"[{[j + 1]}.{dados[j][0]} -> {Nombre_de_dados[j]}]")
+            print(f"Opcion invalida, reintentar...")
 
-
-        if g < 3 :   
-            while True:
-                opcion = str(input("Desea hacer otra tirada? s/n\n")).lower()
-                if opcion == "s":
-            
-                    for k in range(5): 
-                        while True:
-                            dado_que_desea_mantener = (input("Indique la posicion del dado desea mantener(de querer salir utilizar '10'): "))
-
-                            if not dado_que_desea_mantener.isdigit():
-                                print("debe de poner solo numeros, intente de nuevo")
-                            else:
-                                break
-                    
-                        dado_que_desea_mantener = int(dado_que_desea_mantener)
-
-                        if dado_que_desea_mantener == 10:
-                            break
-                    
-                        for i in range (len(dados)):
-                            if dado_que_desea_mantener - 1 == i:
-                                dados[i][1] = True
-                elif  opcion ==  "n":
-                    print (f"Fin de la tirada...")
-                    return dados 
-                else:
-                    print(f"Opcion invalida, reintentar...")
-        
-        return print(dados)
-                    
- 
-
+    return dados
+    
+    
 def lista_de_dados_elegidos (lista_dados):
     dados_elegidos = []
   
