@@ -21,7 +21,7 @@ def pantalla_principal(pantalla):
 
     ANCHO_BOTON = 160
     ALTO_BOTON = 60
-    ESPACIO = 20
+    ESPACIO = 5
 
     total_ancho_botones = (ANCHO_BOTON  * 5) + (ESPACIO * 4)
     inicio_botones_x = (ANCHO_PANTALLA - total_ancho_botones) // 2
