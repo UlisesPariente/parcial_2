@@ -12,5 +12,7 @@ DATOS = {"nombres": [["MERCURIO",1],["VENUS",2],["TIERRA",3],[ "MARTE",4],["JUPI
                    {"jugada":"[POKER (40)]","valor":0,"bandera_uso":True},
                    {"jugada":"[GENERALA (50)]","valor":0,"bandera_uso":True}]}
 
+
+
 with open ("archivo.json","w") as archivo:
     json.dump(DATOS,archivo, indent=4)
