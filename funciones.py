@@ -1,11 +1,12 @@
 import random
 import os
 from datos.datos import DATOS
+
+
 def modificacion_generala (puntaje:int, opcion):
     numero_opcion = int (opcion)
     DATOS ["puntos"] [numero_opcion-1]["valor"] = puntaje
-
-
+    
 def suma_puntos ():
     puntaje_total = 0
     for i in range(len(DATOS)):
@@ -248,8 +249,7 @@ def dados_manetener (dados):
             print(f"Opcion invalida, reintentar...")
 
     return dados
-    
-    
+
 def lista_de_dados_elegidos (lista_dados):
     dados_elegidos = []
   
@@ -257,9 +257,6 @@ def lista_de_dados_elegidos (lista_dados):
         dados_elegidos.append(lista_dados[i][0])
     
     return dados_elegidos
-
-
-
 
 def guardar_puntuacion(nombre, puntuacion):
     archivo = "puntuaciones.csv"
