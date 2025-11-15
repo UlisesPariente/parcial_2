@@ -17,7 +17,7 @@ while True:
         
             for i in range(10):
                 dados = [[0,False],[0,False],[0,False],[0,False],[0,False]]
-            
+                print (f"════════════════ RONDA #{i+1} ═══════════════════════════")
                 mostrar_puntuaciones()
                 dados = tirada_de_dados(dados)
                 dados_mantener = dados_manetener(dados)
@@ -32,9 +32,11 @@ while True:
             
                 
         case 2:
-            
-            leer_TOP10_linea_por_linea("puntuaciones.csv")
-            pass
+            if verificar_archivo_existentes ("puntuaciones.csv")==False:
+                print("Todavia no se cargo ningun puntaje....")
+            else:
+                
+                leer_TOP10_linea_por_linea("puntuaciones.csv")
         
         case 3:
             pass
