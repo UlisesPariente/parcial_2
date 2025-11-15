@@ -4,7 +4,7 @@ from datos.datos import DATOS
 
 def suma_puntos ():
     puntaje_total = 0
-    for i in range(len(DATOS)):
+    for i in range(len(DATOS["puntos"])):
         puntaje_total +=  DATOS ["puntos"][i]["valor"]
     return puntaje_total
 
@@ -12,41 +12,40 @@ def guardar_puntuacion(nombre, puntuacion):
     archivo = "puntuaciones.csv"
     puntuaciones = []
 
+    # Si el archivo existe, leerlo
     if os.path.exists(archivo):
         with open(archivo, "r", encoding="utf-8") as f:
             lineas = f.readlines()
-            
-        inicio = 0
-        if lineas:
-            primera = lineas[0].strip()
-            if primera.lower().startswith("nombre"):
-                inicio = 1
 
-        for linea in lineas[inicio:]:
+        for linea in lineas:
             partes = linea.strip().split(",")
             if len(partes) == 2 and partes[1].isdigit():
                 n = partes[0]
                 p = int(partes[1])
                 puntuaciones.append((n, p))
 
+    # Agregar la nueva puntuación
     puntuaciones.append((nombre, puntuacion))
 
+    # Ordenar manualmente de mayor a menor usando burbuja
     n = len(puntuaciones)
     for i in range(n):
         for j in range(0, n - i - 1):
             if puntuaciones[j][1] < puntuaciones[j + 1][1]:
-
+                temp = puntuaciones[j]
                 puntuaciones[j] = puntuaciones[j + 1]
-                puntuaciones[j + 1] = puntuaciones[j]
+                puntuaciones[j + 1] = temp
 
+    # Mantener solo las 10 mejores
     if len(puntuaciones) > 10:
         puntuaciones = puntuaciones[:10]
 
+    # Guardar sin encabezado
     with open(archivo, "w", encoding="utf-8") as f:
-        f.write("Nombre,Puntuacion\n")
         for n, p in puntuaciones:
             f.write(f"{n},{p}\n")
 
+    # Mensaje final
     if (nombre, puntuacion) in puntuaciones:
         print(f"✅ {nombre} - {puntuacion} agregado al top 10")
     else:
