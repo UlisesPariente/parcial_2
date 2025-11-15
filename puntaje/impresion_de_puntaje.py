@@ -1,4 +1,4 @@
-
+import os
 from datos.datos import DATOS
 
 def mostrar_puntuaciones ():
@@ -19,6 +19,23 @@ def mostrar_puntuaciones ():
 
 
 def leer_TOP10_linea_por_linea(ruta):
+    print("┌──────┬──────────────┬───────────┐")
+    print("│ Rank │ Nombre       │ Puntaje   │")
+    print("├──────┼──────────────┼───────────┤")
     with open(ruta, "r", encoding="utf-8") as archivo:
+        contador=1
         for linea in archivo:
-            print(linea.strip())
+            nombre, puntaje = linea.strip().split(",")
+            print (f"│{contador:<6}│{nombre:<13} │ {puntaje:<9} │")
+            contador+=1
+        print("└──────┴──────────────┴───────────┘")
+                    
+                    
+                               
+           
+            
+
+def verificar_archivo_existentes(nombre_archivo):
+    if not os.path.exists(nombre_archivo):
+        return False
+
