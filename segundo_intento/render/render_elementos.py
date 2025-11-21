@@ -18,14 +18,20 @@ def crear_boton_rect (superficie,x,y,ancho,alto,texto,color_fondo,color_texto):
     
     fuente =pygame.font.Font(None,40)
     rectangulo = pygame.Rect (x,y,ancho,alto)
+
     
-    pygame.draw.rect(superficie,color_fondo,rectangulo,border_radius=10)
+    if rectangulo.collidepoint(pygame.mouse.get_pos()):
+        pygame.draw.rect(superficie,(155,155,155),rectangulo,border_radius=10)
+    else :
+        pygame.draw.rect(superficie,color_fondo,rectangulo,border_radius=10)
+
     
     texto_imagen = fuente.render(texto,True, color_texto)
     texto_x = x + (ancho - texto_imagen.get_width()) // 2
     texto_y = y + (alto - texto_imagen.get_height()) // 2
     
     superficie.blit (texto_imagen,(texto_x,texto_y))
+    
     
     return rectangulo
 
@@ -35,5 +41,8 @@ def crear_boton_imagen (superficie,x,y,ancho,alto,ruta_imagen):
     
     forma = imagen.get_rect(topleft = (x, y))
     superficie.blit(imagen, forma.topleft)
+    
+    
 
     return forma
+
