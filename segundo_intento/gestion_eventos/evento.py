@@ -7,12 +7,11 @@ def gestionar_eventos (evento,pantalla_actual,botones):
         return pantalla_actual
     if evento.type == pygame.MOUSEBUTTONDOWN and evento.button == 1:
         pos  = pygame.mouse.get_pos ()
-        
+        print (pos)
         for boton in botones:
             if boton["rect"].collidepoint(pos):
                 
                 print ("Click detected: sobre",boton["accion"])
-                
                 reproducir_efecto(cargar_efecto(EFECTO_CLICK))
                 
                 accion =boton["accion"]
@@ -23,8 +22,6 @@ def gestionar_eventos (evento,pantalla_actual,botones):
                     match accion:
                         case "jugar":
                             return "jugar"
-                        case "opciones":
-                            return "opciones"
                         case "estadisticas":
                             return "estadisticas"
                         case "creditos":
