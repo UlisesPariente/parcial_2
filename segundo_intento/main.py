@@ -1,6 +1,6 @@
 import pygame
 import datos.constantes as constantes
-from render.render_pantalla import pantalla_principal,pantalla_opciones,pantalla_jugar
+from render.render_pantalla import pantalla_principal,pantalla_stats,pantalla_jugar,fondo_pantalla_jugar
 from gestion_eventos.evento import gestionar_eventos 
 from audio.gestor_audio import reproducir_musica,MUSICA_PRINCIPAL
 
@@ -16,6 +16,7 @@ COLOR_FONDO= constantes.COLOR_FONDO
 reloj = pygame.time.Clock()
 pantalla_actual = "menu"
 botones = None
+pantalla_anterior =None
 #musica=reproducir_musica(MUSICA_PRINCIPAL)
 
 while ejecutando:
@@ -27,17 +28,17 @@ while ejecutando:
             pantalla_actual = gestionar_eventos (evento,pantalla_actual,botones)
             
     if pantalla_actual =="menu":
-        botones = pantalla_principal (pantalla)
-        
+        botones = pantalla_principal (pantalla,pygame.event.get()) 
         
     elif pantalla_actual == "jugar":
-        pantalla_jugar(pantalla)
+       
+        botones = pantalla_jugar(pantalla)
+        
     elif pantalla_actual == "estadisticas":
+        botones = pantalla_stats(pantalla)
         pass
     elif pantalla_actual == "creditos":
         pass
-    elif pantalla_actual == "opciones":
-        botones = pantalla_opciones(pantalla)
         
     elif pantalla_actual == "salir":
         pass
