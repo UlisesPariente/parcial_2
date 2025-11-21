@@ -1,8 +1,8 @@
 {
     "config": {
         "ventana": {
-            "ancho": 800,
-            "alto": 600,
+            "ancho": 1280,
+            "alto": 768,
             "titulo": "DICE NICE"
         },
         "audio": {
