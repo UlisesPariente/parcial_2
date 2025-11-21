@@ -5,6 +5,7 @@ from datos.constantes import ANCHO_PANTALLA,COLOR_SECUNDARIO,COLOR_TEXTO_OSCURO,
 
 
 def pantalla_principal(pantalla):
+    
     logo = logo_juego()
     fondo = fondo_menu()
     
@@ -30,6 +31,7 @@ def pantalla_principal(pantalla):
     
     pantalla.blit(fondo, (0, 0))
     pantalla.blit(logo, (x_logo, y_logo))
+    
     for i, texto in enumerate(etiquetas):
         x = inicio_botones_x + i * (ANCHO_BOTON + ESPACIO)
         rect = crear_boton_rect(
@@ -39,16 +41,26 @@ def pantalla_principal(pantalla):
             ALTO_BOTON,
             texto,
             COLOR_TEXTO_CLARO,
-            COLOR_SECUNDARIO
+            COLOR_SECUNDARIO,
         )
         botones.append({"accion": claves[i], "rect": rect})
+    
+    
+    pygame.display.flip()
 
     return botones
-
+ 
 
 def pantalla_opciones(pantalla):
     pantalla.fill((40, 40, 40))
     fuente = pygame.font.Font(None, 70)
-    texto = fuente.render("PANTALLA DE OPCIONES", True, (COLOR_TEXTO_CLARO))
+    texto = fuente.render("OPCIONES", True, (COLOR_TEXTO_CLARO))
     pantalla.blit(texto, (100, 100))
     return []
+
+def pantalla_jugar(pantalla):
+    pantalla.fill((40,40,40))
+    fuente = pygame.font.Font(None,70)
+    texto = fuente.render("GENERALA",True,(COLOR_TEXTO_CLARO))
+    pantalla.blit (texto,(100,100))
+    
