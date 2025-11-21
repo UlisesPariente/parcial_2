@@ -14,10 +14,9 @@ while True:
                 DATOS ["puntos"][i]["valor"]=0
                 DATOS ["puntos"][i]["bandera_uso"]=True
                 
-        
             for i in range(10):
                 dados = [[0,False],[0,False],[0,False],[0,False],[0,False]]
-                print (f"════════════════ RONDA #{i+1} ═══════════════════════════")
+                print (f"═════════════ RONDA #{i+1} ══════════════════")
                 mostrar_puntuaciones()
                 dados = tirada_de_dados(dados)
                 dados_mantener = dados_manetener(dados)
@@ -30,12 +29,10 @@ while True:
             nombre = input("ingrese su nombre: ")
             guardar_puntuacion(nombre, puntuacion)
             
-                
         case 2:
             if verificar_archivo_existentes ("puntuaciones.csv")==False:
                 print("Todavia no se cargo ningun puntaje....")
             else:
-                
                 leer_TOP10_linea_por_linea("puntuaciones.csv")
         
         case 3:
@@ -44,7 +41,7 @@ while True:
             # "2/11/2025  ->  -/-/-"
             
         case 4:
-            #QUIT
+            print (f"═════════ MUCHAS GRACIAS POR JUGAR ══════════")
             break
         
         case _:
