@@ -1,5 +1,5 @@
 import random
-from datos.datos import DATOS
+from segundo_intento.datos.datos import DATOS
 
 def nombre_dados (datos, dados):
     for i in range(6):
@@ -11,7 +11,5 @@ def tirada_de_dados (dados):
             if dados[j][1] == False:
                 numero_del_dado = random.randint (1,6)
                 dados[j][0] = numero_del_dado
-                
-            print (f"[{[j + 1]}.{dados[j][0]} -> {nombre_dados(DATOS,numero_del_dado)}]")
 
         return (dados)
