@@ -28,7 +28,7 @@ while ejecutando:
             pantalla_actual = gestionar_eventos (evento,pantalla_actual,botones)
             
     if pantalla_actual =="menu":
-        botones = pantalla_principal (pantalla,pygame.event.get()) 
+        botones = pantalla_principal (pantalla,) 
         
     elif pantalla_actual == "jugar":
        
