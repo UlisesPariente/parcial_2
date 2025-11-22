@@ -1,5 +1,6 @@
 import pygame
-from datos.constantes import ANCHO_PANTALLA,ALTO_PANTALLA
+from datos.constantes import ANCHO_PANTALLA,ALTO_PANTALLA,COLOR_TEXTO_CLARO
+
 
 
 FONDO = pygame.image.load ("segundo_intento/assets/FONDO.png")
@@ -14,9 +15,9 @@ def logo_juego ():
 def fondo_menu():
     return FONDO
 
-def crear_boton_rect (superficie,x,y,ancho,alto,texto,color_fondo,color_texto):
+def crear_boton_rect (superficie,x,y,ancho,alto,texto,tamaño_texto,color_fondo,color_texto):
     
-    fuente =pygame.font.Font(None,40)
+    fuente =pygame.font.Font(None,tamaño_texto)
     rectangulo = pygame.Rect (x,y,ancho,alto)
 
     
@@ -42,7 +43,4 @@ def crear_boton_imagen (superficie,x,y,ancho,alto,ruta_imagen):
     forma = imagen.get_rect(topleft = (x, y))
     superficie.blit(imagen, forma.topleft)
     
-    
-
     return forma
-
