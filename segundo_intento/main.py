@@ -1,6 +1,6 @@
 import pygame
 import datos.constantes as constantes
-from render.render_pantalla import pantalla_principal,pantalla_stats,pantalla_jugar,fondo_pantalla_jugar
+from render.render_pantalla import pantalla_principal,solicitar_nombre,pantalla_jugar
 from gestion_eventos.evento import gestionar_eventos 
 from audio.gestor_audio import reproducir_musica,MUSICA_PRINCIPAL
 
@@ -18,24 +18,27 @@ pantalla_actual = "menu"
 botones = None
 pantalla_anterior =None
 #musica=reproducir_musica(MUSICA_PRINCIPAL)
+font = pygame.font.Font(None,50)
+siguiente_pantalla = None
+nombre_usuario = ""
 
 while ejecutando:
-    
-    for evento in pygame.event.get():
+    eventos = pygame.event.get()
+    for evento in eventos:
         if evento.type == pygame.QUIT:
             ejecutando =False
         else:
             pantalla_actual = gestionar_eventos (evento,pantalla_actual,botones)
             
     if pantalla_actual =="menu":
-        botones = pantalla_principal (pantalla,) 
+        botones = pantalla_principal (pantalla) 
         
     elif pantalla_actual == "jugar":
        
         botones = pantalla_jugar(pantalla)
         
     elif pantalla_actual == "estadisticas":
-        botones = pantalla_stats(pantalla)
+        botones = solicitar_nombre(pantalla, font)
         pass
     elif pantalla_actual == "creditos":
         pass
