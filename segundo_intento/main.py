@@ -35,7 +35,7 @@ while ejecutando:
     elif pantalla_actual == "jugar":
        
         pantalla_actual = pantalla_jugar(pantalla,font)
-        
+
     elif pantalla_actual == "estadisticas":
         
         pass
