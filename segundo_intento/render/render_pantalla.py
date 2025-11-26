@@ -56,66 +56,59 @@ def fondo_pantalla_jugar():
     return PANTALLA_FONDO_JUGAR
 
 
-def solicitar_nombre (pantalla,font):
+def solicitar_nombre(pantalla, font):
     nombre = ""
     activa = True
     while activa:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                return "Jugador"
+                return "jugador"
             
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN and len(nombre)>0:
                     activa = False
-                    pantalla = 
 
                 elif event.key == pygame.K_BACKSPACE:
                     nombre = nombre [:-1]
-                    
+                
                 else:
                     nombre += event.unicode
             pantalla.blit(PANTALLA_FONDO_JUGAR,(0,0))
             txt=font.render("Ingresar nombre de jugador: ", True, (255,255,255))
-            pantalla.blit(txt,(50,50))
+            pantalla.blit(txt,(80,200))
             
             entrada = font.render (nombre,True,(255,255,255))
             
-            pantalla.blit(entrada, (50,100))
+            pantalla.blit(entrada, (80,260))
             
             pygame.display.flip()
     return nombre
 
 
-
-
 def pantalla_jugar(pantalla,font):
     jugador  = ["",0,0]
     jugador [0] = solicitar_nombre (pantalla,font)
-    
 
-        
     while True:
         pantalla.blit (PANTALLA_FONDO_JUGAR,(0,0))
+        
         titulo = font.render(f"Jugador: {jugador[0]}", True, (0,0,0))
         pantalla.blit(titulo, (20, 20))
 
         subtitulo = font.render("Elija dados a jugar", True, (0,0,0))
         pantalla.blit(subtitulo, (250, 70))
 
-        jugador [1]=0 
-        
-        
         for event in pygame.event.get():
             if event.type ==  pygame.QUIT:
-                return "salir"
-
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
-                return "menu"
-            
+               break
             
             if event.type == pygame.MOUSEBUTTONDOWN:
-                M_x,M_y = event.pos
-                
+                mx , my = event.pos
+                print (mx,my)
+            
+        pygame.display.flip()
+        
+        
                 
                 
        
