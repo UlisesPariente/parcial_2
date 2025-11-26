@@ -48,37 +48,6 @@ def pantalla_principal(pantalla):
     pygame.display.flip()
 
     return botones
-
-
- 
-
-def solicitar_nombre (pantalla,font):
-    nombre = ""
-    activa = True
-    while activa:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                return "Jugador"
-            
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_RETURN and len(nombre)>0:
-                    activa = False
-
-                elif event.key == pygame.K_BACKSPACE:
-                    nombre = nombre [:-1]
-                
-                else:
-                    nombre += event.unicode
-            pantalla.fill((50,120,50))
-            txt=font.render("Ingresar nombre de jugador: ", True, (255,255,255))
-            pantalla.blit(txt,(80,200))
-            
-            entrada = font.render (nombre,True,(255,255,255))
-            
-            pantalla.blit(entrada, (80,260))
-            
-            pygame.display.flip()
-    return nombre
             
 PANTALLA_FONDO_JUGAR= pygame.image.load( "segundo_intento/assets/FONDO_JUGAR.png")
 PANTALLA_FONDO_JUGAR = pygame.transform.scale(PANTALLA_FONDO_JUGAR,(ANCHO_PANTALLA,ALTO_PANTALLA))
@@ -87,43 +56,6 @@ def fondo_pantalla_jugar():
     return PANTALLA_FONDO_JUGAR
 
 
-
-def pantalla_jugar(pantalla):
-    nombre_usuario = ""
-    pantalla.blit(PANTALLA_FONDO_JUGAR,(0,0))
-
-    fuente_pantalla = pygame.font.Font(None,70)
-    fuente_input = pygame.font.Font(None,(60))
-    texto = fuente_pantalla.render("Nomber:",True,(COLOR_TEXTO_CLARO))
-    pantalla.blit (texto,(10,10))
-    
-    texto_nombre = fuente_input.render(nombre_usuario,True,(255,255,255))
-    pantalla.blit(texto_nombre,(10,100))
-    
-    rect = crear_boton_rect(pantalla,(ANCHO_PANTALLA-170),(ALTO_PANTALLA-70),150,50,"Siguiente",25,(COLOR_TEXTO_CLARO),(20,3,3))
-
-    pos = pygame.mouse.get_pos()
-    
-    for evento in pygame.event.get(()):
-        if evento.type == pygame.KEYDOWN:
-            if evento.key == pygame.K_RETURN:
-                if nombre_usuario.strip() != "":
-                    return "estadisticas"
-            
-            elif evento.key == pygame.K_BACKSPACE:
-                nombre_usuario = nombre_usuario[:-1]
-            
-            else:
-                if evento.unicode.insprintable():
-                    nombre_usuario += evento.unicode
-                    
-        if rect.collidepoint (pos):
-            if evento.type == pygame.MOUSEBUTTONDOWN and evento.button == 1:
-                if nombre_usuario.strip () != "":
-                    return "estadisticas"
-    
-    pygame.display.flip()
-    
 def solicitar_nombre (pantalla,font):
     nombre = ""
     activa = True
@@ -135,19 +67,55 @@ def solicitar_nombre (pantalla,font):
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN and len(nombre)>0:
                     activa = False
+                    pantalla = 
 
                 elif event.key == pygame.K_BACKSPACE:
                     nombre = nombre [:-1]
-                
+                    
                 else:
                     nombre += event.unicode
-            pantalla.fill((50,120,50))
+            pantalla.blit(PANTALLA_FONDO_JUGAR,(0,0))
             txt=font.render("Ingresar nombre de jugador: ", True, (255,255,255))
-            pantalla.blit(txt,(80,200))
+            pantalla.blit(txt,(50,50))
             
-            entrada = pygame.font.Font(None,50).render (nombre,True,(255,255,255))
+            entrada = font.render (nombre,True,(255,255,255))
             
-            pantalla.blit(entrada, (80,260))
+            pantalla.blit(entrada, (50,100))
             
             pygame.display.flip()
     return nombre
+
+
+
+
+def pantalla_jugar(pantalla,font):
+    jugador  = ["",0,0]
+    jugador [0] = solicitar_nombre (pantalla,font)
+    
+
+        
+    while True:
+        pantalla.blit (PANTALLA_FONDO_JUGAR,(0,0))
+        titulo = font.render(f"Jugador: {jugador[0]}", True, (0,0,0))
+        pantalla.blit(titulo, (20, 20))
+
+        subtitulo = font.render("Elija dados a jugar", True, (0,0,0))
+        pantalla.blit(subtitulo, (250, 70))
+
+        jugador [1]=0 
+        
+        
+        for event in pygame.event.get():
+            if event.type ==  pygame.QUIT:
+                return "salir"
+
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+                return "menu"
+            
+            
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                M_x,M_y = event.pos
+                
+                
+                
+       
