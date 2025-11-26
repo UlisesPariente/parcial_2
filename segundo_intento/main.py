@@ -1,6 +1,6 @@
 import pygame
 import datos.constantes as constantes
-from render.render_pantalla import pantalla_principal,solicitar_nombre,pantalla_jugar
+from render.render_pantalla import pantalla_principal,pantalla_jugar
 from gestion_eventos.evento import gestionar_eventos 
 from audio.gestor_audio import reproducir_musica,MUSICA_PRINCIPAL
 
@@ -15,11 +15,10 @@ pygame.display.set_caption (constantes.TITULO)
 COLOR_FONDO= constantes.COLOR_FONDO
 reloj = pygame.time.Clock()
 pantalla_actual = "menu"
+
 botones = None
-pantalla_anterior =None
 #musica=reproducir_musica(MUSICA_PRINCIPAL)
 font = pygame.font.Font(None,50)
-siguiente_pantalla = None
 nombre_usuario = ""
 
 while ejecutando:
@@ -35,10 +34,10 @@ while ejecutando:
         
     elif pantalla_actual == "jugar":
        
-        botones = pantalla_jugar(pantalla)
+        pantalla_actual = pantalla_jugar(pantalla,font)
         
     elif pantalla_actual == "estadisticas":
-        botones = solicitar_nombre(pantalla, font)
+        
         pass
     elif pantalla_actual == "creditos":
         pass
