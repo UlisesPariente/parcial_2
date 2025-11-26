@@ -16,7 +16,6 @@ def gestionar_eventos (evento,pantalla_actual,botones):
                 
                 accion =boton["accion"]
                 
-                    
                 if pantalla_actual == "menu":
                     
                     match accion:
