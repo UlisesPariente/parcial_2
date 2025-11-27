@@ -1,7 +1,7 @@
 import pygame
 import random
-from segundo_intento.datos.datos import DATOS
-from dados.lanzada_dados import nombre_dados, tirada_de_dados
+from datos.datos import DATOS
+
 
 def lista_de_dados_elegidos (lista_dados):
     dados_elegidos = []

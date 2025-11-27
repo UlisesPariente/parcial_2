@@ -1,6 +1,6 @@
 import pygame
 from render.render_elementos import logo_juego,fondo_menu,crear_boton_rect
-
+from jugar.juego import tirada_de_dados
 from datos.constantes import ANCHO_PANTALLA,ALTO_PANTALLA,COLOR_SECUNDARIO,COLOR_TEXTO_OSCURO,COLOR_TEXTO_CLARO
 
 
@@ -88,30 +88,89 @@ def solicitar_nombre(pantalla, font):
 def pantalla_jugar(pantalla,font):
     jugador  = ["",0,0]
     jugador [0] = solicitar_nombre (pantalla,font)
+    
+    btn_jugar = pygame.Rect(300, 450, 150, 50)
+    btn_tirar = pygame.Rect(550, 450, 150, 50)
+    dados = [[0,False],[0,False],[0,False],[0,False],[0,False]]
+   
+    for ronda in range(1, 11): 
+         for subronda in range(1, 4):  
+            subronda_activa = True    
+            while True:
+                pantalla.blit (PANTALLA_FONDO_JUGAR,(0,0))
+        
+                titulo = font.render(f"Jugador: {jugador[0]} - ronda {ronda}/10", True, (130, 43, 138))
+                pantalla.blit(titulo, (20, 20))
+
+                subtitulo = font.render(f"Elija dados a jugar - tirada {subronda}/3", True, (130, 43, 138))
+                pantalla.blit(subtitulo, (250, 70))
+                tirada_de_dados(dados)
+            
+
+                for event in pygame.event.get():
+                    if event.type ==  pygame.QUIT:
+                        return "salir"
+            
+                    if event.type == pygame.MOUSEBUTTONDOWN:
+                        mx , my = event.pos
+                        print (mx,my)
+                
+                        if btn_tirar.collidepoint(mx, my):
+                         tirada_de_dados(dados)
+                         subronda_activa = False
+                        
+                        
+
+
+
+
+        
+                pygame.draw.rect (pantalla,(130, 43, 138),btn_tirar)
+                pygame.draw.rect (pantalla,(130, 43, 138),btn_jugar)
+        
+                pygame.display.flip()
+        
+
+def pantalla_creditos(pantalla):
+   
+    pantalla.blit(PANTALLA_FONDO_JUGAR, (0, 0))
+
+    fuente_titulo = pygame.font.Font(None, 80)
+    fuente_texto = pygame.font.Font(None, 45)
+
+   
+    titulo = fuente_titulo.render("Mini Generala Tematica", True, COLOR_TEXTO_CLARO)
+    pantalla.blit(titulo, (ANCHO_PANTALLA//2 - titulo.get_width()//2, 30))
+
+  
+    informacion = [
+        "Autores: Gonzalo Ruiz Diaz y Ulises pariente",
+        "Fecha: -",
+        "Materia: Programación 1",
+        "Docentes: Martin Alejandro Garcia",
+        "Carrera: Tecnicatura en programacion",
+        "Email de contacto: ruizdiaz1020@gmail.com/ulisespariente1@gmail.com",
+        "presione ESC si desea volver al menu"
+    ]
+
+    y = 150
+    for linea in informacion:
+        renglon = fuente_texto.render(linea, True, (0, 0, 0))
+        pantalla.blit(renglon, (80, y))
+        y += 60  
 
     while True:
-        pantalla.blit (PANTALLA_FONDO_JUGAR,(0,0))
-        
-        titulo = font.render(f"Jugador: {jugador[0]}", True, (130, 43, 138))
-        pantalla.blit(titulo, (20, 20))
-
-        subtitulo = font.render("Elija dados a jugar", True, (130, 43, 138))
-        pantalla.blit(subtitulo, (250, 70))
-
         for event in pygame.event.get():
-            if event.type ==  pygame.QUIT:
-               break
+            if event.type == pygame.QUIT:
+                return "salir"
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+                return "menu"   
             
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                mx , my = event.pos
-                print (mx,my)
-        
-        pygame.draw.rect (pantalla,(130, 43, 138),btn_tirar)
-        pygame.draw.rect (pantalla,(130, 43, 138),btn_jugar)
-        
-        pygame.display.flip()
-        
-        
-                
+
+    
+            pygame.display.flip()
+
+    
+     
                 
        

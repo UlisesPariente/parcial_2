@@ -1,6 +1,6 @@
 import pygame
 import datos.constantes as constantes
-from render.render_pantalla import pantalla_principal,pantalla_jugar
+from render.render_pantalla import pantalla_principal,pantalla_jugar,pantalla_creditos
 from gestion_eventos.evento import gestionar_eventos 
 from audio.gestor_audio import reproducir_musica,MUSICA_PRINCIPAL
 
@@ -40,10 +40,10 @@ while ejecutando:
         
         pass
     elif pantalla_actual == "creditos":
-        pass
+        pantalla_actual = pantalla_creditos(pantalla)
         
     elif pantalla_actual == "salir":
-        pass
+        ejecutando = False
 
                 
    
