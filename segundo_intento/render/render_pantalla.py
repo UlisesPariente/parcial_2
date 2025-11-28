@@ -1,6 +1,6 @@
 import pygame
 from render.render_elementos import logo_juego,fondo_menu,crear_boton_rect
-from jugar.juego import tirada_de_dados
+from jugar.juego import tirada_de_dados,seleccion_puntaje,modificacion_generala
 from datos.constantes import ANCHO_PANTALLA,ALTO_PANTALLA,COLOR_SECUNDARIO,COLOR_TEXTO_OSCURO,COLOR_TEXTO_CLARO
 from datos.datos import DATOS
 
@@ -97,112 +97,135 @@ def pantalla_jugar(pantalla,font):
     jugador  = ["",0,0]
     jugador [0] = solicitar_nombre (pantalla,font)
     font_categorias = pygame.font.SysFont("Comic Sans MS", 50)
-            
-    
+    categoria_seleccionada = [False] * 10       
+    categoria_activa = None
+
    
     for ronda in range(1, 11): 
-        dados = [[0,False],[0,False],[0,False],[0,False],[0,False]]        
-        for subronda in range(1, 5):  
-            subronda_activa = True    
-            while subronda_activa:
-                pantalla.blit (PANTALLA_FONDO_JUGAR,(0,0))
         
-                titulo = font.render(f"Jugador: {jugador[0]} - ronda {ronda}/10", True, (130, 43, 138))
-                pantalla.blit(titulo, (20, 20))
+        dados = [[0,False],[0,False],[0,False],[0,False],[0,False]]
+        opciones_de_seleccion = 10
+        dados_elegidos =[]
+        bandera_fin_subrondas = True
+        
+        for subronda in range(1, 5):
+            
+            if bandera_fin_subrondas:   
+                subronda_activa = True    
+                while subronda_activa:
+                    pantalla.blit (PANTALLA_FONDO_JUGAR,(0,0))
+            
+                    titulo = font.render(f"Jugador: {jugador[0]} - ronda {ronda}/10", True, (130, 43, 138))
+                    pantalla.blit(titulo, (20, 20))
 
-                subtitulo = font.render(f"Elija dados a jugar - tirada {subronda-1}/3", True, (130, 43, 138))
-                pantalla.blit(subtitulo, (250, 70))
-                
-                
-                
-                for i in range(len(DATOS["puntos"])):
-                    texto = DATOS["puntos"][i]["jugada"]
-                    categorias = font_categorias.render(texto,True,(255,255,255))
-                    pantalla.blit(categorias,(300,100+i*65))
-                
-                if subronda > 1:
+                    subtitulo = font.render(f"Elija dados a jugar - tirada {subronda-1}/3", True, (130, 43, 138))
+                    pantalla.blit(subtitulo, (250, 70))
+                    
+                    
+                    
+                    for i in range(len(DATOS["puntos"])):
+                        texto = DATOS["puntos"][i]["jugada"]
+                        categorias = font_categorias.render(texto,True,(255,255,255))
+                        pantalla.blit(categorias,(300,100+i*65))
+                    
                     btn_jugar= crear_boton_rect(pantalla,50,(ALTO_PANTALLA-140),150,50,"JUGAR",25,COLOR_TEXTO_CLARO, COLOR_SECUNDARIO)
-                
-                btn_categoria_uno = pygame.Rect (304,120,153,50)
-                btn_categoria_dos =pygame.Rect (300,165,150,50)
-                btn_categoria_tres =pygame.Rect (300,(100+2*65),150,50)
-                btn_categoria_cuatro =pygame.Rect (300,(100+3*65),150,50)
-                btn_categoria_cinco =pygame.Rect (300,(100+4*65),150,50)
-                btn_categoria_seis =pygame.Rect (300,(100+5*65),150,50)
-                btn_categoria_escalera =pygame.Rect (300,(100+6*65),150,50)
-                btn_categoria_full =pygame.Rect (300,(100+7*65),150,50)
-                btn_categoria_poker =pygame.Rect (300,(100+8*65),150,50)
-                btn_categoria_generala =pygame.Rect (300,(100+9*65),150,50)
-                
-                
-                
-                btn_tirar = crear_boton_rect(pantalla,50,(ALTO_PANTALLA-70),150,50,"TIRAR",25,COLOR_TEXTO_CLARO,COLOR_SECUNDARIO)
-                
+                    
+                    btn_tirar = crear_boton_rect(pantalla,50,(ALTO_PANTALLA-70),150,50,"TIRAR",25,COLOR_TEXTO_CLARO,COLOR_SECUNDARIO)
+                    
 
-                btn_dado_1 = pygame.Rect((ANCHO_PANTALLA-200),50,120,120) 
-                btn_dado_2 = pygame.Rect((ANCHO_PANTALLA-200),200,120,120)
-                btn_dado_3 = pygame.Rect((ANCHO_PANTALLA-200),350,120,120)
-                btn_dado_4 = pygame.Rect((ANCHO_PANTALLA-200),500,120,120)
-                btn_dado_5 = pygame.Rect((ANCHO_PANTALLA-200),650,120,120)
+                    btn_dado_1 = pygame.Rect((ANCHO_PANTALLA-200),50,120,120) 
+                    btn_dado_2 = pygame.Rect((ANCHO_PANTALLA-200),200,120,120)
+                    btn_dado_3 = pygame.Rect((ANCHO_PANTALLA-200),350,120,120)
+                    btn_dado_4 = pygame.Rect((ANCHO_PANTALLA-200),500,120,120)
+                    btn_dado_5 = pygame.Rect((ANCHO_PANTALLA-200),650,120,120)
+                    
+                    mx , my = pygame.mouse.get_pos()
+                    botones_categorias = [pygame.Rect(240, 120 + i*65,40, 40)for i in range(10)]
+                    for i, rect in enumerate(botones_categorias):
+                        pygame.draw.rect(pantalla, (208,208,208), rect, 3)
+                        
+                                
+                        
+                        
+                    for i in range (len(dados)):
+                        valor_dados  = dados [i][0]
+                        if valor_dados > 0:
+                            img = imagen_de_dados[valor_dados-1]
+                            pantalla.blit(img,(ANCHO_PANTALLA-200,50 + (i * 150)))
+                    
+                        if dados[i][1] == True:
+                            if i == 0:
+                                pygame.draw.rect(pantalla,(255,255,255),btn_dado_1,3)
+                            if i == 1:
+                                pygame.draw.rect(pantalla,(255,255,255),btn_dado_2,3)
+                            if i == 2:
+                                pygame.draw.rect(pantalla,(255,255,255),btn_dado_3,3)
+                            if i == 3:
+                                pygame.draw.rect(pantalla,(255,255,255),btn_dado_4,3)
+                                
+                            if i == 4:
+                                pygame.draw.rect(pantalla,(255,255,255),btn_dado_5,3)
+                    
+                    
+                    for event in pygame.event.get():
+                        if event.type ==  pygame.QUIT:
+                            return "salir"
                 
-                mx , my = pygame.mouse.get_pos()
-                if btn_categoria_uno.collidepoint (mx,my):
-                    pygame.draw.rect(pantalla,(208,208,208),btn_categoria_uno,3)
-                
-                for i in range (len(dados)):
-                    valor  = dados [i][0]
-                    if valor > 0:
-                        img = imagen_de_dados[valor-1]
-                        pantalla.blit(img,(ANCHO_PANTALLA-200,50 + (i * 150)))
-                
-                    if dados[i][1] == True:
-                        if i == 0:
-                            pygame.draw.rect(pantalla,(255,255,255),btn_dado_1,3)
-                        if i == 1:
-                            pygame.draw.rect(pantalla,(255,255,255),btn_dado_2,3)
-                        if i == 2:
-                            pygame.draw.rect(pantalla,(255,255,255),btn_dado_3,3)
-                        if i == 3:
-                            pygame.draw.rect(pantalla,(255,255,255),btn_dado_4,3)
+                        if event.type == pygame.MOUSEBUTTONDOWN:
+                            print (mx,my)
                             
-                        if i == 4:
-                            pygame.draw.rect(pantalla,(255,255,255),btn_dado_5,3)
-                
-                
-                for event in pygame.event.get():
-                    if event.type ==  pygame.QUIT:
-                        return "salir"
+                                    
+                                    
+                                    
+                                    
+                            if btn_tirar.collidepoint(mx, my):
+                                tirada_de_dados(dados)
+                                dados = tirada_de_dados(dados)
+                                
+                                subronda_activa = False
+                            
+                            if btn_dado_1.collidepoint(mx,my):
+                                dados[0][1] = not dados[0][1]
+                            
+                            if btn_dado_2.collidepoint(mx,my):
+                                dados[1][1] = not dados[1][1]
+
+                            if btn_dado_3.collidepoint(mx,my):
+                                dados[2][1] = not dados[2][1]
+                            
+                            if btn_dado_4.collidepoint(mx,my):
+                                dados[3][1] = not dados[3][1]
+                            
+                            if btn_dado_5.collidepoint(mx,my):
+                                dados[4][1] = not dados[4][1]
+
+                            for i, rect in enumerate(botones_categorias):
+                                if rect.collidepoint(mx,my):
+                                    
+                                    if categoria_activa == i:
+                                        categoria_activa = None
+                                    else:
+                                        categoria_activa = i
+                                
+                                    
+                            
+                            if btn_jugar.collidepoint(mx,my):
+                                if opciones_de_seleccion !=10:
+                                    for i in range (6):
+                                        dados_elegidos.append(dados[i][0])
+                                            
+                                    Puntaje , opciones_de_seleccion = seleccion_puntaje (opciones_de_seleccion,dados,font,pantalla)
+                                    modificacion_generala(Puntaje,opciones_de_seleccion)
+                                    bandera_fin_subrondas = False
+                                    
+                    for i, rect in enumerate (botones_categorias):
+                        pygame.draw.rect(pantalla,(208,208,208),rect,3)
+                    for i, rect in enumerate(botones_categorias):
+                        if categoria_activa == i:
+                            pygame.draw.rect(pantalla, (208, 208, 208), rect, 10)
+
+                    pygame.display.flip()
             
-                    if event.type == pygame.MOUSEBUTTONDOWN:
-                        print (mx,my)
-                        
-                            
-                
-                        if btn_tirar.collidepoint(mx, my):
-                            tirada_de_dados(dados)
-                            dados = tirada_de_dados(dados)
-                            
-                            subronda_activa = False
-                        
-                        if btn_dado_1.collidepoint(mx,my):
-                            dados[0][1] = not dados[0][1]
-                           
-                        if btn_dado_2.collidepoint(mx,my):
-                            dados[1][1] = not dados[1][1]
-
-                        if btn_dado_3.collidepoint(mx,my):
-                            dados[2][1] = not dados[2][1]
-                        
-                        if btn_dado_4.collidepoint(mx,my):
-                            dados[3][1] = not dados[3][1]
-                        
-                        if btn_dado_5.collidepoint(mx,my):
-                            dados[4][1] = not dados[4][1]
-
-            
-        
-                pygame.display.flip()
-        
 
 def pantalla_creditos(pantalla):
    
