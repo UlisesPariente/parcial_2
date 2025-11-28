@@ -29,11 +29,6 @@ def tirada_de_dados (dados):
 def seleccion_puntaje (opciones_de_seleccion,dados,font,pantalla):
 
     while True:
-        mostrar_mensaje = True
-        tiempo_inicio = pygame.time.get_ticks()
-        if not mostrar_mensaje:
-            texto = font.render ("OPCION INVALIDA..",True,(255,255,0))
-            pantalla.blit(texto,(300,400))
         Puntaje = 0
             
         match opciones_de_seleccion:
@@ -43,9 +38,8 @@ def seleccion_puntaje (opciones_de_seleccion,dados,font,pantalla):
                     for i in range (5):
                         if 1 == dados[i]:
                             Puntaje += dados[i]
-                    break
-                else:
-                    mostrar_mensaje = False
+                
+                    
                     
                 
                 
@@ -55,9 +49,8 @@ def seleccion_puntaje (opciones_de_seleccion,dados,font,pantalla):
                     for i in range (5):
                         if 2 == dados[i]:
                             Puntaje += dados[i]
-                    break
-                else:
-                    mostrar_mensaje = False
+                    
+                
                     
             case 2:
                 if DATOS ["puntos"][2]["bandera_uso"] == True:
@@ -65,9 +58,8 @@ def seleccion_puntaje (opciones_de_seleccion,dados,font,pantalla):
                     for i in range (5):
                         if 3 == dados[i]:
                             Puntaje += dados[i]
-                    break
-                else:
-                    mostrar_mensaje = False
+            
+                
                     
             case 3:
                 if DATOS ["puntos"][3]["bandera_uso"] == True:
@@ -75,9 +67,8 @@ def seleccion_puntaje (opciones_de_seleccion,dados,font,pantalla):
                     for i in range (5):
                         if 4 == dados[i]:
                             Puntaje += dados[i]
-                    break
-                else:
-                    mostrar_mensaje = False
+            
+                
                     
             case 4:
                 if DATOS ["puntos"][4]["bandera_uso"] == True:
@@ -85,9 +76,8 @@ def seleccion_puntaje (opciones_de_seleccion,dados,font,pantalla):
                     for i in range (5):
                         if 5 == dados[i]:
                             Puntaje += dados[i]
-                    break
-                else:
-                    mostrar_mensaje = False
+            
+                
                    
             case 5:
                 if DATOS ["puntos"][5]["bandera_uso"] == True:
@@ -95,9 +85,8 @@ def seleccion_puntaje (opciones_de_seleccion,dados,font,pantalla):
                     for i in range (5):
                         if 6 == dados[i]:
                             Puntaje += dados[i]
-                    break
-                else:
-                    mostrar_mensaje = False
+            
+                
                     
             case 6:
                 if DATOS ["puntos"][6]["bandera_uso"] == True:
@@ -110,9 +99,8 @@ def seleccion_puntaje (opciones_de_seleccion,dados,font,pantalla):
                     
                     if Dados_auxiliar == Lista_Escalera_correcta_1 or Dados_auxiliar == Lista_Escalera_correcta_2:
                         Puntaje = 20
-                    break
-                else:
-                    mostrar_mensaje = False
+            
+                
                     
             case 7:
                 if DATOS ["puntos"][7]["bandera_uso"] == True:
@@ -135,9 +123,8 @@ def seleccion_puntaje (opciones_de_seleccion,dados,font,pantalla):
                                         
                     if 3 in contador_full and 2 in contador_full:
                         Puntaje = 30
-                    break
-                else:
-                    mostrar_mensaje = False
+            
+                
                     
             case 8:
                 if DATOS ["puntos"][8]["bandera_uso"] == True:
@@ -165,9 +152,8 @@ def seleccion_puntaje (opciones_de_seleccion,dados,font,pantalla):
                                 
                     if 4 in lista_contador:
                         Puntaje = 40
-                    break
-                else:
-                    mostrar_mensaje = False
+            
+                
                 
             case 9:
                 if DATOS ["puntos"][9]["bandera_uso"] == True:
@@ -195,21 +181,15 @@ def seleccion_puntaje (opciones_de_seleccion,dados,font,pantalla):
                                 
                     if 5 in lista_contador:
                         Puntaje = 50
-                    break
-                else:
-                    mostrar_mensaje = False
-                            
-            case _:
-                mostrar_mensaje = False
-                
-        pygame.display.flip()
+           
+        return (Puntaje, opciones_de_seleccion)
+            
 
-    return (Puntaje, opciones_de_seleccion)
+    
         
 
 def modificacion_generala (puntaje:int, opcion):
-    numero_opcion = int (opcion)
-    DATOS ["puntos"] [numero_opcion-1]["valor"] = puntaje
+    DATOS ["puntos"] [opcion]["valor"] = puntaje
     
 def suma_puntos ():
     puntaje_total = 0
