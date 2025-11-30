@@ -1,6 +1,6 @@
 import pygame
 import datos.constantes as constantes
-from render.render_pantalla import pantalla_principal,pantalla_jugar,pantalla_creditos
+from render.render_pantalla import pantalla_principal,pantalla_jugar,pantalla_creditos,pantalla_estadisticas
 from gestion_eventos.evento import gestionar_eventos 
 from audio.gestor_audio import reproducir_musica,MUSICA_PRINCIPAL
 
@@ -37,17 +37,14 @@ while ejecutando:
         pantalla_actual = pantalla_jugar(pantalla,font)
 
     elif pantalla_actual == "estadisticas":
-        
-        pass
+        pantalla_actual = pantalla_estadisticas(pantalla,font)
     elif pantalla_actual == "creditos":
         pantalla_actual = pantalla_creditos(pantalla)
         
     elif pantalla_actual == "salir":
         ejecutando = False
 
-                
-   
-    
+            
     reloj.tick(constantes.FPS)
     pygame.display.flip()
     
