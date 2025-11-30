@@ -3,10 +3,10 @@
         "ventana": {
             "ancho": 1280,
             "alto": 768,
-            "titulo": "DICE SPACE"
+            "titulo": "GENERALA UNIVERSAL"
         },
         "audio": {
-            "volumen": 0.7
+            "volumen": 0.1
         },
         "colores": {
             "fondo": [
