@@ -12,7 +12,7 @@ def guardar_puntuacion(nombre, puntuacion):
     archivo = "puntuaciones.csv"
     puntuaciones = []
 
-    # Si el archivo existe, leerlo
+
     if os.path.exists(archivo):
         with open(archivo, "r", encoding="utf-8") as f:
             lineas = f.readlines()
@@ -24,10 +24,10 @@ def guardar_puntuacion(nombre, puntuacion):
                 p = int(partes[1])
                 puntuaciones.append((n, p))
 
-    # Agregar la nueva puntuación
+
     puntuaciones.append((nombre, puntuacion))
 
-    # Ordenar manualmente de mayor a menor usando burbuja
+
     n = len(puntuaciones)
     for i in range(n):
         for j in range(0, n - i - 1):
@@ -36,16 +36,13 @@ def guardar_puntuacion(nombre, puntuacion):
                 puntuaciones[j] = puntuaciones[j + 1]
                 puntuaciones[j + 1] = temp
 
-    # Mantener solo las 10 mejores
     if len(puntuaciones) > 10:
         puntuaciones = puntuaciones[:10]
 
-    # Guardar sin encabezado
     with open(archivo, "w", encoding="utf-8") as f:
         for n, p in puntuaciones:
             f.write(f"{n},{p}\n")
 
-    # Mensaje final
     if (nombre, puntuacion) in puntuaciones:
         print(f"✅ {nombre} - {puntuacion} agregado al top 10")
     else:
