@@ -94,27 +94,32 @@ imagen_de_dados = [
 
         
 def pantalla_jugar(pantalla,font):
-    jugador  = ["",0,0]
+
+    jugador  = ["",0]
+    
     jugador [0] = solicitar_nombre (pantalla,font)
     font_categorias = pygame.font.SysFont("Comic Sans MS", 50)       
     categoria_activa = None
     categorias_seleccionadas = [True]*10
+    
     for i in range (len (DATOS["puntos"])):
         DATOS["puntos"][i]["valor"] = 0
         DATOS["puntos"][i]["bandera_uso"] = True
-        
+    
+    
 
    
     for ronda in range(1, 11): 
         
         dados = [[0,False],[0,False],[0,False],[0,False],[0,False]]
-        opciones_de_seleccion = 10
-        
+        opciones_de_seleccion = None
+
         
         dados_elegidos = []
         
         bandera_fin_subrondas = True
         bandera_tirar = True
+        
         
         for subronda in range(1, 5):
             
@@ -151,7 +156,7 @@ def pantalla_jugar(pantalla,font):
                                                         
                 btn_jugar= crear_boton_rect(pantalla,50,(ALTO_PANTALLA-140),150,50,"JUGAR",25,COLOR_TEXTO_CLARO, COLOR_SECUNDARIO)                    
                 btn_tirar = crear_boton_rect(pantalla,50,(ALTO_PANTALLA-70),150,50,"TIRAR",25,COLOR_TEXTO_CLARO,COLOR_SECUNDARIO)
-                                   
+                                 
                 btn_dado_1 = pygame.Rect((ANCHO_PANTALLA-200),50,120,120) 
                 btn_dado_2 = pygame.Rect((ANCHO_PANTALLA-200),200,120,120)
                 btn_dado_3 = pygame.Rect((ANCHO_PANTALLA-200),350,120,120)
@@ -179,7 +184,7 @@ def pantalla_jugar(pantalla,font):
                         if i == 3:
                             pygame.draw.rect(pantalla,(255,255,255),btn_dado_4,3)                                
                         if i == 4:
-                            pygame.draw.rect(pantalla,(255,255,255),btn_dado_5,3)         
+                            pygame.draw.rect(pantalla,(255,255,255),btn_dado_5,3)                  
                                                            
                 for event in pygame.event.get():
                     if event.type ==  pygame.QUIT:
@@ -188,13 +193,14 @@ def pantalla_jugar(pantalla,font):
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         print (mx,my)                          
 
-                        if btn_tirar.collidepoint(mx, my):                                                                                                
-                            
+                        if btn_tirar.collidepoint(mx, my):                                                                                                    
+                        
                             if subronda != 4:
                                 subronda_activa = False
-                                tirada_de_dados(dados)
                                 dados = tirada_de_dados(dados)  
-                        
+                                
+                            bandera_tirar = False
+                                
                         if subronda >1:                                                 
                             if btn_dado_1.collidepoint(mx,my):
                                 dados[0][1] = not dados[0][1]                            
@@ -219,45 +225,49 @@ def pantalla_jugar(pantalla,font):
                                                                                                                                    
                         if btn_jugar.collidepoint(mx,my):
                             print ("asd")
-                            if bandera_tirar == True:
-                                bandera_tirar = False
-                                bandera_fin_subrondas = False
-                                subronda_activa = False
+                            
+                            
+                            if bandera_tirar == False and subronda>1:
+                                
                                 for i in range (len(categorias_seleccionadas)):
                                     if opciones_de_seleccion == i:
-                                        categorias_seleccionadas[i] = False
-                                
-                                
-                                if opciones_de_seleccion !=10:
+                                        categorias_seleccionadas[i] = False    
+                                                                                                           
+                                if opciones_de_seleccion != None:
                                     for i in range (5):
                                         dados_elegidos.append(dados[i][0])
-                                                                                
-                                    puntaje, opciones_de_seleccion = seleccion_puntaje (opciones_de_seleccion,dados_elegidos,font_categorias,pantalla)
-                                    modificacion_generala(puntaje,opciones_de_seleccion)
-                                    
-                                    print (dados_elegidos)
-                                    print (opciones_de_seleccion)
+                                        
+                                    if DATOS["puntos"][opciones_de_seleccion]["bandera_uso"] == True:
+                                                                         
+                                        bandera_fin_subrondas = False
+                                        subronda_activa = False
+                                                                                                                                                                                                            
+                                        puntaje, opciones_de_seleccion = seleccion_puntaje (opciones_de_seleccion,dados_elegidos,font_categorias,pantalla)
+                                        modificacion_generala(puntaje,opciones_de_seleccion)                                        
+                                        print (dados_elegidos)
+                                        print (opciones_de_seleccion)
                 
-                
-                                                                                                                                                                                                                       
+                                                                                                                                                                                                                     
                 for i, rect in enumerate (botones_categorias):
                     pygame.draw.rect(pantalla,(208,208,208),rect,3)
                     
                     if categorias_seleccionadas [i] == False:
                         pygame.draw.rect(pantalla,(20,188,20), rect, 20)
                         pygame.draw.rect(pantalla, (208, 208, 208), rect, 10)
+                        
                                             
                 for i, rect in enumerate(botones_categorias):
                     if categoria_activa == i:
-                        
                         pygame.draw.rect(pantalla, (208, 208, 208), rect, 10)
+                        
+                    
                         
                 pygame.display.flip()
                 
             if bandera_fin_subrondas == False:
                 break            
-    
-    return "menu"            
+                
+    return "estadisticas", jugador        
             
 
 def pantalla_creditos(pantalla):
@@ -299,8 +309,27 @@ def pantalla_creditos(pantalla):
     
             pygame.display.flip()
 
+PANTALLA_FONDO_ESTADISTICAS = pygame.image.load("segundo_intento/assets/FONDO_STATS.png")
+PANTALLA_FONDO_ESTADISTICAS = pygame.transform.scale(PANTALLA_FONDO_ESTADISTICAS,(ANCHO_PANTALLA,ALTO_PANTALLA))
+
+def pantalla_estadisticas(pantalla,font):
     
+    while True:
+        pantalla.blit(PANTALLA_FONDO_JUGAR,(0,0))
+        txt=font.render("", True, (87, 81, 81), (191, 191, 191))
+        pantalla.blit(txt,(50,50))
     
-                
-                
-       
+
+
+def leer_TOP10_linea_por_linea(ruta):
+    print("┌──────┬──────────────┬───────────┐")
+    print("│ Rank │ Nombre       │ Puntaje   │")
+    print("├──────┼──────────────┼───────────┤")
+    with open(ruta, "r", encoding="utf-8") as archivo:
+        contador=1
+        for linea in archivo:
+            nombre, puntaje = linea.strip().split(",")
+            print (f"│{contador:<6}│{nombre:<13} │ {puntaje:<9} │")
+            contador+=1
+        print("└──────┴──────────────┴───────────┘")
+                    
