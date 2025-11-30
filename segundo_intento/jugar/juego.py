@@ -39,27 +39,19 @@ def seleccion_puntaje (opciones_de_seleccion,dados,font,pantalla):
                         if 1 == dados[i]:
                             Puntaje += dados[i]
                 
-                    
-                    
-                
-                
             case 1:
                 if DATOS ["puntos"][1]["bandera_uso"] == True:
                     DATOS ["puntos"] [1]["bandera_uso"] = False 
                     for i in range (5):
                         if 2 == dados[i]:
                             Puntaje += dados[i]
-                    
-                
-                    
+                            
             case 2:
                 if DATOS ["puntos"][2]["bandera_uso"] == True:
                     DATOS ["puntos"] [2]["bandera_uso"] = False 
                     for i in range (5):
                         if 3 == dados[i]:
-                            Puntaje += dados[i]
-            
-                
+                            Puntaje += dados[i]  
                     
             case 3:
                 if DATOS ["puntos"][3]["bandera_uso"] == True:
@@ -67,17 +59,13 @@ def seleccion_puntaje (opciones_de_seleccion,dados,font,pantalla):
                     for i in range (5):
                         if 4 == dados[i]:
                             Puntaje += dados[i]
-            
-                
-                    
+                      
             case 4:
                 if DATOS ["puntos"][4]["bandera_uso"] == True:
                     DATOS ["puntos"] [4]["bandera_uso"] = False 
                     for i in range (5):
                         if 5 == dados[i]:
                             Puntaje += dados[i]
-            
-                
                    
             case 5:
                 if DATOS ["puntos"][5]["bandera_uso"] == True:
@@ -85,9 +73,7 @@ def seleccion_puntaje (opciones_de_seleccion,dados,font,pantalla):
                     for i in range (5):
                         if 6 == dados[i]:
                             Puntaje += dados[i]
-            
-                
-                    
+                 
             case 6:
                 if DATOS ["puntos"][6]["bandera_uso"] == True:
                     DATOS ["puntos"][6]["bandera_uso"] = False
@@ -99,9 +85,7 @@ def seleccion_puntaje (opciones_de_seleccion,dados,font,pantalla):
                     
                     if Dados_auxiliar == Lista_Escalera_correcta_1 or Dados_auxiliar == Lista_Escalera_correcta_2:
                         Puntaje = 20
-            
-                
-                    
+                   
             case 7:
                 if DATOS ["puntos"][7]["bandera_uso"] == True:
                     DATOS ["puntos"][7]["bandera_uso"] = False
@@ -122,9 +106,7 @@ def seleccion_puntaje (opciones_de_seleccion,dados,font,pantalla):
                                 contador_full[5] += 1
                                         
                     if 3 in contador_full and 2 in contador_full:
-                        Puntaje = 30
-            
-                
+                        Puntaje = 30   
                     
             case 8:
                 if DATOS ["puntos"][8]["bandera_uso"] == True:
@@ -152,9 +134,7 @@ def seleccion_puntaje (opciones_de_seleccion,dados,font,pantalla):
                                 
                     if 4 in lista_contador:
                         Puntaje = 40
-            
-                
-                
+               
             case 9:
                 if DATOS ["puntos"][9]["bandera_uso"] == True:
                     DATOS ["puntos"][9]["bandera_uso"] = False
