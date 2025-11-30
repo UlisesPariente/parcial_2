@@ -13,15 +13,6 @@ def reproducir_musica(ruta,loop=True):
         cantidad_reproduccion=0
     pygame.mixer.music.play(cantidad_reproduccion)
     
-def detener_musica ():
-    pygame.mixer.music.stop()
-    
-def pausar_musica():
-    pygame.mixer.music.pause()
-    
-def reanudadr_musica():
-    pygame.mixer.music.unpause()
-    
 def cargar_efecto(ruta):
     efecto = pygame.mixer.Sound(ruta)
     efecto.set_volume (VOLUMEN_MUSCIA + 0.2)
@@ -29,4 +20,5 @@ def cargar_efecto(ruta):
 
 def reproducir_efecto (efecto):
     efecto.play()
-    
+
+
