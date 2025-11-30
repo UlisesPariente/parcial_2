@@ -2,7 +2,8 @@ from dados.gestor_dados import *
 from puntaje.guardado_de_puntaje import *
 from puntaje.asignacion_puntaje import *
 from puntaje.impresion_de_puntaje import *
-from datos.datos import DATOS
+from datos.datos import DATOS,informacion
+
 
 while True:
     print  (f"═════════════════════════\n\tMINI GENERALA\n═════════════════════════\n[1] Jugar\n[2] Estadisticas\n[3] Creditos\n[4] Salir\n× Seleccione una opcion:\n ")
@@ -19,6 +20,7 @@ while True:
                 print (f"═════════════ RONDA #{i+1} ══════════════════")
                 mostrar_puntuaciones()
                 dados = tirada_de_dados(dados)
+                
                 dados_mantener = dados_manetener(dados)
                 dados_elegidos = lista_de_dados_elegidos(dados_mantener)
                 
@@ -36,9 +38,8 @@ while True:
                 leer_TOP10_linea_por_linea("puntuaciones.csv")
         
         case 3:
-            pass
-            # creditos 
-            # "2/11/2025  ->  -/-/-"
+            for i in range (len(informacion)):
+                print (f"{informacion[i]}")
             
         case 4:
             print (f"═════════ MUCHAS GRACIAS POR JUGAR ══════════")
