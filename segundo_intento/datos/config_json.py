@@ -4,8 +4,8 @@ import os
 
 configuracion_default = {
     "config": {
-        "ventana": {"ancho": 800, "alto": 600, "titulo": "DICE NICE"},
-        "audio": {"volumen": 0.7},
+        "ventana": {"ancho": 800, "alto": 600, "titulo": "GENERALA UNIVERSAL"},
+        "audio": {"volumen": 0.1},
         "colores": {"fondo": [5, 1, 87], "primario": [113, 0, 255], "secundario": [252, 96, 248], "texto_claro": [255, 255, 255], "texto_oscuro": [0, 0, 0]}
     }
 }
