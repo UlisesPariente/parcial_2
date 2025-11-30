@@ -14,5 +14,6 @@ DATOS = {"nombres": [["MERCURIO",1],["VENUS",2],["TIERRA",3],[ "MARTE",4],["JUPI
 
 
 
+
 with open ("archivo.json","w") as archivo:
     json.dump(DATOS,archivo, indent=4)
