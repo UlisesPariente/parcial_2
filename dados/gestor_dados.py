@@ -29,7 +29,7 @@ def dados_manetener (dados):
                         dados[i][1] = True
                 
             tirada_de_dados(dados)
-                        
+                         
         elif  opcion ==  "n":
             print (f"Fin de la tirada...")
             return dados                     
