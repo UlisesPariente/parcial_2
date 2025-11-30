@@ -1,4 +1,3 @@
-import pygame
 import random
 from datos.datos import DATOS
 import os
@@ -23,8 +22,7 @@ def tirada_de_dados (dados):
                 dados[j][0] = numero_del_dado
 
         return (dados)
-    
-    
+  
 
 def seleccion_puntaje (opciones_de_seleccion,dados,font,pantalla):
 
@@ -205,7 +203,6 @@ def guardar_puntuacion(nombre, puntuacion):
 
     if len(puntuaciones) > 10:
         puntuaciones = puntuaciones[:10]
-
     with open(archivo, "w", encoding="utf-8") as f:
         for n, p in puntuaciones:
             f.write(f"{n},{p}\n")
